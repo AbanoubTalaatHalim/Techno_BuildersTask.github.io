@@ -1,0 +1,15 @@
+.App {
+  text-align: center;
+}
+body {
+  background: linear-gradient(to left, rgb(9, 83, 102), chocolate);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: white;
+}
+.builders {
+  color: chocolate;
+}
+
+/*  */
