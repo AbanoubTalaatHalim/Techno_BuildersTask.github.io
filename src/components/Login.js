@@ -26,7 +26,6 @@ class Login extends Component {
     if (errors) return;
 
     //Call Backend
-    console.log("submit");
     const { history } = this.props;
 
     const sendPostRequest = async () => {
@@ -39,7 +38,6 @@ class Login extends Component {
           }
         );
         console.log("response is : ", resp.data);
-        console.log("response StatusCode is : ", resp.status);
         if (resp.status === 200) {
           auth.login(() => {
             history.push(`/profile?user=${this.state.email}`);

@@ -12,15 +12,12 @@ class Profile extends Component {
     phone: "",
   };
   componentDidMount() {
-    console.log(this.props.location.search);
-
     const sendGetRequest = async () => {
       try {
         const search = this.props.location.search.slice(1);
         let searchParams = JSON.parse(
           '{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}'
         );
-        console.log(searchParams);
         const resp = await axios.get(
           `http://41.38.70.8:8003/api/resource/User/${searchParams.user}`,
           {
@@ -29,8 +26,6 @@ class Profile extends Component {
             },
           }
         );
-        console.log(resp);
-        console.log(resp.data);
         const ageDrivenFromBirth =
           new Date().getFullYear() -
           parseInt(resp.data.data.birth_date.slice(0, 4));
@@ -41,7 +36,6 @@ class Profile extends Component {
           phone: resp.data.data.phone,
         });
         window.myage = resp.data.data.birth_date;
-        console.log(resp.data);
       } catch (err) {
         console.error("ERROR is: ", err);
       }
@@ -56,8 +50,6 @@ class Profile extends Component {
     });
   };
   render() {
-    console.log(this.props);
-    console.log(this.state);
     return (
       <>
         <div className="card">
