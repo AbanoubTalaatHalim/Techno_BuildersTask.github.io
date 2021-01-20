@@ -15,9 +15,11 @@ class Profile extends Component {
     const sendGetRequest = async () => {
       try {
         const search = this.props.location.search.slice(1);
+
         let searchParams = JSON.parse(
           '{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}'
         );
+
         const resp = await axios.get(
           `http://41.38.70.8:8003/api/resource/User/${searchParams.user}`,
           {
@@ -29,13 +31,13 @@ class Profile extends Component {
         const ageDrivenFromBirth =
           new Date().getFullYear() -
           parseInt(resp.data.data.birth_date.slice(0, 4));
+
         this.setState({
           userImg: resp.data.data.user_image,
           first_name: resp.data.data.first_name,
           age: ageDrivenFromBirth,
           phone: resp.data.data.phone,
         });
-        window.myage = resp.data.data.birth_date;
       } catch (err) {
         console.error("ERROR is: ", err);
       }
